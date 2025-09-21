@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import Link from "next/link";
 import Links from "../components/Links";
 import { Header } from "../components/Header";
+import { useBgLightBlue } from "../hooks/useBgLightBlue";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function About() {
+  useBgLightBlue();
   return (
     <>
       <div

@@ -4,6 +4,7 @@ import { Footer } from "../components/Footer";
 import Links from "../components/Links";
 import { Header } from "../components/Header";
 import { useCallback, useEffect, useState } from "react";
+import { useBgLightBlue } from "../hooks/useBgLightBlue";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +19,7 @@ const geistMono = Geist_Mono({
 const handleClick = (e) => {};
 
 export default function Home() {
+  useBgLightBlue();
   const [text, setText] = useState("");
   const [foo, setFoo] = useState(1);
   //let foo = 1;
@@ -37,13 +39,6 @@ export default function Home() {
       return newArray;
     });
   }, [text]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue";
-    return () => {
-      document.body.style.backgroundColor = "";
-    };
-  }, []);
 
   console.log(foo);
   console.log(text);
