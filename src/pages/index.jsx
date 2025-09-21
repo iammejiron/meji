@@ -28,8 +28,15 @@ export default function Home() {
   };
   const [array, setArray] = useState([]);
   const handleAdd = useCallback(() => {
-    alert(123);
-  }, []);
+    setArray((prevArray) => {
+      if (prevArray.some((item) => item === text)) {
+        alert("同じ要素が既に存在します");
+        return prevArray;
+      }
+      const newArray = [...prevArray, text];
+      return newArray;
+    });
+  }, [text]);
 
   useEffect(() => {
     document.body.style.backgroundColor = "lightblue";
@@ -50,6 +57,8 @@ export default function Home() {
         <h1>{foo}</h1>
         <button onClick={handleClick}>ボタン</button>
         <input
+          className="bg-white"
+          id="hogemaru"
           type="text"
           value={text}
           onChange={(e) => {
@@ -59,12 +68,13 @@ export default function Home() {
             }
             setText(e.target.value.trim());
           }}
-        ></input>
+        />
         <button onClick={handleAdd}>追加</button>
+
         <ul>
-          {array.map((item) => {
-            return <div key={item}>{item}</div>;
-          })}
+          {(array || []).map((item) => (
+            <li key={item}>{item}</li>
+          ))}
         </ul>
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
           <Image
